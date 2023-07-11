@@ -1,0 +1,143 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --a0: #E6E6DD;
+    --a1: #393646;
+    --a2: #4F4557;
+    --a3: #6D5D6E;
+    --a4: #F4EEE0;
+    --b0: #12090f;
+    --b1: #122d42;
+    --b2: #125f7e;
+    --b3: #1d9bc5;
+    --b3: #20d9d8;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--a4);
+}
+
+#login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(./sign-in/bg-sign-in.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left;
+}
+
+.sign-in {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 70%;
+  height: 100vh
+}
+
+.sign-in img {
+  height: 300px;
+  width: 300px;
+}
+
+.title {
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--b1);
+  width: 600px;
+  border-radius: 8px;
+  gap: 25px;
+}
+
+.back-to-home {
+  color: var(--b3);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.welcome-message {  
+  color: var(--a4);
+}
+
+.help-to-user {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.p-link-register {
+  color: var(--a4);
+}
+
+.link-register {
+  color: var(--b3);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sign-in-input {
+  background: url(./sign-in/background-sign-in.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+  border-radius: 8px;
+  flex-direction: column;
+}
+
+.sign-form {
+  border: 2px solid var(--b1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-dates {
+  height: 40px;
+  width: 320px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--a4);
+  padding: 20px;
+}
+
+.sign-in-input h2 {
+  color: var(--a4);
+  font-size: 20px;
+  margin-bottom: 60px;
+}
+
+.sign-in-input p {
+  margin-top: 40px;
+  color: var(--a4);
+}
+
+.forget-password {
+  color: var(--b3);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-submit {
+  height: 40px;
+  border: 2px solid var(--b3);
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--b3);
+  background-color: var(--b1);
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+}

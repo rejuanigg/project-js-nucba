@@ -1,0 +1,247 @@
+
+            <div class="blur-info-box">
+                <img src="./assets/body/noticia.jpeg" alt="noticia-arm-pisa-el-acelerador">
+                <h2>
+                        ¡Ultima Hora!
+                </h2>
+                  <p>
+                    ARM pisa el acelerador: sus nuevas 
+                    CPU y GPU nos prometen colocar 
+                    el listón de Android por las nubes
+                  </p>
+            <div class="btn-box">
+                  <button class="see-more-btn">
+                    <a href="#" class="see-more-link">
+                        Ver Más
+                    </a>
+                </button>
+                <button class="add-notice">+</button>
+            </div>
+            </div>
+
+
+            css
+
+
+            .hero {
+    background-color: var(--b1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 90px;
+    height: 400px;
+}
+
+
+
+.blur-info-box {
+    border: 2px solid var(--a0);
+    height: auto;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    gap: 20px;
+    font-family: 'Domine', serif;
+    border-radius: 12px;
+}
+
+.blur-info-box img {
+    height: 80px;
+}
+
+.blur-info-box h2 {
+    color: var(--a0);
+    font-weight: 900;
+}
+
+.blur-info-box p {
+    color: var(--a0);
+}
+
+.see-more-link {
+    color: var(--b1);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-box {
+    display: flex;
+    gap: 8px;
+}
+
+.see-more-btn {
+    background-color: var(--a0);
+    height: 35px;
+    width: auto;    
+    border: none;
+    border-radius: 10px;
+    width: 120px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.add-notice {
+    width: 35px;
+    height: 35px;
+    border: 2px solid var(--a4);
+    background-color: var(--b1);
+    color: var(--a4);
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+
+EERROR2
+
+
+
+
+#categories {
+    display: flex;
+    justify-content: space-around;
+    margin: 90px;
+}
+
+
+.preview-notice {
+    border: 2px solid var(--b0);
+    height: 240px;
+    width: 400px;
+    position: relative;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.preview-notice img {
+    height: 240px;
+    width: 400px;
+    position: absolute;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.title-news{
+    color: var(--b2);
+    width: 100%;
+    z-index: 1;
+    font-size: medium;
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-preview {
+    color: var(--b2);
+    border: 2px solid var(--b2);
+    z-index: 1;
+}
+
+.notice-preview-box {
+    border: 2px solid var();
+    height: 280px;
+    width: 400px;
+    border-radius: 7px;
+    position: relative;
+    z-index: 1;
+    background: url(./body/noticia23.jpeg);
+    background-size: cover;
+    background-position-y: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.notice-preview-box h5 {
+    color: var(--a4);
+    font-family: 'Montserrat', sans-serif;  
+}
+
+.notice-pw-container {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    align-items: center;
+}
+
+HTML 
+<div class="preview-notices">
+        <h2 class="title-pw">Últimas Noticias</h2>
+        <div class="notice-pw-container">
+            <div class="notice-preview-box">
+                <a href="#" class="btn-add-notice btn-pw">+</a>
+                <h5>Apple lanza su mejor procesador por todo lo alto: el M2 Ultra llega en los nuevos Mac Pro y Mac Studio.</h5>
+            </div>
+            <div class="notice-preview-box">
+                <a href="#" class="btn-add-notice btn-pw">+</a>
+                <h5>Apple lanza su mejor procesador por todo lo alto: el M2 Ultra llega en los nuevos Mac Pro y Mac Studio.</h5>
+            </div>
+            <div class="notice-preview-box">
+                <a href="#" class="btn-add-notice btn-pw">+</a>
+                <h5>Apple lanza su mejor procesador por todo lo alto: el M2 Ultra llega en los nuevos Mac Pro y Mac Studio.</h5>
+            </div>
+        </div>
+    </div>
+
+
+    JS
+
+
+const newsContainer = document.querySelector(".news-p");
+const seeMoreBtn = document.querySelector(".btn-load")
+
+const createNewsTemplate = (news) => {
+    const {id, title, newsImg, footer, categories} = news;
+    return `
+       <div class="news-box">
+            <img src=${newsImg}>
+            <div class="news-box-info">
+                <h4>${title}</h4>
+                <p>${footer}</p>
+                    <div class="news-options">
+                    <button class="btn-see-more btn-news"
+                    data-id="${id}" 
+                    data-title="${title}" 
+                    data-newsImg="${newsImg}">Ver Más</button>
+                    <button class="btn-add-notice btn-news"
+                    data-id="${id}" 
+                    data-title="${title}" 
+                    data-newsImg="${newsImg}">+</button>
+                    </div>
+            </div>
+       </div>
+    `
+}
+
+const renderNews = (newsList) => {
+    newsContainer.innerHTML += newsList.map(createNewsTemplate).join("");
+};
+
+const isLastIndexOf = () => {
+    return appState.currentNewsIndex === appState.newsLimit-1;
+}
+
+
+const seeMoreNews = () => {
+    appState.currentNewsIndex+=1;
+    let {news, currentNewsIndex} = appState;
+    renderNews(news[currentNewsIndex]);
+    if (isLastIndexOf()){
+        seeMoreBtn.classList.add("hidden");
+    }
+}
+
+const init = () => {
+    renderNews(appState.news[appState.currentNewsIndex]);
+    seeMoreBtn.addEventListener("click", seeMoreNews)
+};
+
+init();                  

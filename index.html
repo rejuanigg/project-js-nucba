@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles.css">
+    <link rel="stylesheet" href="./assets/mediaqueries.css">
     <link rel="stylesheet" 
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
@@ -12,7 +14,6 @@
     <link 
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" 
     rel="stylesheet">
-    <link rel="stylesheet" href="./assets/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" 
     crossorigin>
@@ -26,36 +27,157 @@
         <a href="#" class="link-logo">
             <span class="logo">NEW WAYS</span>
         </a>
-        <div class="input-news">
-            <input type="text" placeholder="Buscar Noticia" class="search-input">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-        </div>
-        <nav class="nav-list">
-            <li><a href="#" class="nav-link" >Inicio</a></li>
-            <li><a href="#" class="nav-link" >Favoritas</a></li>
-            <li><a href="#" class="nav-link" >Populares</a></li>
-            <li><a href="#" class="nav-link" >Iniciar Sesión</a></li>
+        <nav class="nav-list-container">
+            <ul class="nav-list">
+                <li><a href="#hero" class="nav-link" >Inicio</a></li>
+                <li><a href="#categories" class="nav-link" >Últimas Noticias</a></li>
+                <li><a href="#news" class="nav-link" >Noticias</a></li>
+                <li><a href="#contact-us" class="nav-link" >Contactanos</a></li>
+                <li><a href="./sign-in.html" class="nav-link sign-in-link" >Iniciar Sesión</a></li>
+            </ul>
+            <div class="see-later-label ">
+                <i class="fa-solid fa-bookmark see-later-icon">
+                    <div class="see-later-counter">
+                        0    
+                    </div>
+                </i>
+            </div>
+            <div class="toggle-menu">
+                <i class="fa-solid fa-bars bars"></i>
+            </div>
+
+            
+            <div class="fav-news-container ">
+                <h2>Mis Noticias Favoritas</h2>
+                <div class="fav-news-box">
+                    <img src="./assets/body/noticia23.jpeg" alt="apple-vision-pro">
+                    <div class="fav-news-box-info">
+                        <h4>Apple</h4>
+                            <div class="fav-news-options">
+                                <button class="btn btn-see-more btn-news">Ver más</button>
+                                <button class="btn nav-btn btn-remove">-</button>    
+                            </div>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
     <main class="main">
         <section id="hero">
             <div class="notice-box">
                 <video muted autoplay loop><source src="./assets/body/apple-vision-pro.mp4"></video>
-                <div class="notice-info-box">
+                <div class="news-info-box">
                     <h1>Apple Vision Pro: la nueva era de Apple arranca con unas bestiales gafas de realidad mixta.</h1>
                     <p>Se acabaron los rumores. Apple ha presentado sus primeras gafas de realidad mixta, dispuesta a iniciar una nueva etapa en la compañía. Tras la apuesta de rivales como Meta con sus Quest Pro, con un ticket final de casi 2.000 euros en España, o rivales como OPPO pugnando por el desarrollo en realidad mixta, Apple inicia una nueva era en su gama de producto con las Apple Vision Pro.</p>
                     <div class="btns-box">
-                      <a href="#" class="next-btn" ><</a>
-                      <a href="#" class="btn-see-more">Ver Más</a>
-                      <a href="#" class="btn-add-notice">+</a>
-                      <a href="#" class="next-btn" >></a>
+                      <button class="btn nav-btn"><</a>
+                      <button class="btn btn-see-more">Ver Más</a>
+                      <button class="btn btn-add-notice">+</a>
+                      <button class="btn nav-btn" >></a>
                     </div>
                 </div>
             </div>
         </section>
         <section id="categories">
-            
+            <div class="last-news-container">
+                <h2>Últimas Noticias</h2>
+                <div class="last-news-box">
+                    <!-- <div class="last-news">
+                        <img src="./assets/news/1.jpeg">
+                        <div class="last-news-info">
+                            <a href="#" class="btn-add-notice">+</a>
+                            <h4>Apple lanza su mejor procesador por todo lo alto: el M2 Ultra llega en los nuevos Mac Pro y Mac Studio.</h4>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
         </section>
+        <section id="news">
+            <div class="news-container">
+                <h2>Noticias</h2>
+                <div class="news-categories">
+                    <div class = "categories">
+                            <button class="category active">Todos</button>
+                            <button class="category" data-category="esports">Esports 🕹️</button>
+                            <button class="category" data-category="politics">Políticas 🤳</button>
+                            <button class="category" data-category="new-products">Nuevos Productos ✨</button>
+                    </div>
+                </div>        
+                <div class="news-p">
+                    <!-- <div class="news-box">
+                        <img src="./assets/body/noticia23.jpeg" alt="apple-vision-pro">
+                        <div class="news-box-info">
+                            <h4 >Apple</h4>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium illum ut fugiat cum, magni eos quia modi nesciunt unde reprehenderit nisi maiores, laborum quis quidem assumenda. Nobis quibusdam ab provident.
+                            Modi dolorem nostrum consequuntur </p>
+                                <div class="news-options">
+                                    <a href="#" class="btn-see-more btn-news">Ver más</a>
+                                    <a href="#" class="btn-add-notice btn-news">+</a>    
+                                </div>
+                        </div>
+                    </div> -->
+                </div>
+                <button class="btn-load">Más Noticias</button>
+            </div>
+        </section>
+        <section id="contact-us">
+            <div class="contact-container">
+                <img src="./assets/contact-us/woman-with-a-telephone-2.png" alt="woman-with-a-telephone-2">
+                <div class="contact-box">
+                    <h3>Contactate con nosotros</h3>
+                    <form action="" class="contact-form">
+                        <input type="text" name="" id="" placeholder="Nombre y Apellido" class="contact-input input-dates">
+                        <input type="email" placeholder="Tu Email" class="contact-input input-dates">
+                        <input type="text" placeholder="Tu mensaje" class="contact-input input-message">
+                        <input type="submit" value="Enviar" class="input-submit">
+                    </form>
+                </div>    
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="sections-links">
+                    <ul class="sections-links-list">
+                        <li><a href="#hero" class="link-section" >Inicio</a></li>
+                        <li><a href="#categories" class="link-section" >Últimas Noticias</a></li>
+                        <li><a href="#" class="link-section" >Favoritas</a></li>
+                        <li><a href="#news" class="link-section" >Noticias</a></li>
+                        <li><a href="#contact-us" class="link-section" >Contactanos</a></li>
+                    </ul>
+                    <ul class="categories-links-list">
+                        <li><a href="#" class="link-section" >Esports</a></li>
+                        <li><a href="#" class="link-section" >Políticas</a></li>
+                        <li><a href="#" class="link-section" >Nuevos Productos</a></li>
+                        <li><a href="#" class="link-section" >Trabajo</a></li>
+                        <li><a href="#" class="link-section" >Novedades</a></li>
+                    </ul>
+                </div>
+                <img src="./assets/header/e-news.png" alt="new-ways-logo-footer">
+                <div class="red-social-links">
+                    <ul class="red-social-list">
+                        <li>
+                            <a href="#" class="red-social-link">
+                                <i class="fa-brands fa-square-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="red-social-link">
+                                <i class="fa-brands fa-square-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="red-social-link">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </main>
+    <script src="./data-base.js"></script>
+    <script src="./index.js"></script>
 </body>
 </html>
+
+<p class="empty-msg">No hay noticias guardadas</p>
