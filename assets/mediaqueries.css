@@ -215,10 +215,49 @@
         }
 }
 
-@media(max-width: 600px){
+@media (max-width: 690px){
+    .footer-container img {
+        display: none;
+    }
+}
 
+@media(max-width: 590px){
+    .categories {
+        width: 100%;
+    }
+
+    .news-categories {
+        width: 99%;
+    }
+
+    .news-container {
+        width: 99%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .news-p {
+        width: 99%;
+    }
+
+    .news-box {
+        width: 99%;
+    }
 }
 
 @media (max-width: 480px){
+    .news-box h4 {
+        font-size: 10px;
+    }
 
+    .news-box {
+        gap: 2px;
+    }
+
+    .news-p {
+        width: 100%;
+    }
+    .red-social-list {
+        gap: 10px;
+    }
 }

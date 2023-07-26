@@ -7,6 +7,12 @@ const labelSeeLater = document.querySelector(".see-later-label")
 const seeLaterMenu = document.querySelector(".fav-news-container")
 const menuBtn = document.querySelector(".toggle-menu")
 const navBarList = document.querySelector(".nav-list")
+const heroNewsVideo = document.querySelector(".news-info-box")
+const title = document.querySelector(".hero-title") 
+const paragraph = document.querySelector(".hero-paragraph")
+const video = document.querySelector(".videoChange")
+const nextBtn = document.querySelector(".next")
+const backBtn = document.querySelector(".back")
 
 const createNewsTemplate = (news) => {
     let {id, newsImg, title, footer, category} = news;
@@ -34,7 +40,7 @@ const createNewsTemplate = (news) => {
 };
 
 const templateLastNews = (lastNews) => {
-    let {id, newsImg, title, footer, category} = lastNews;
+    let {id, newsImg, title, category} = lastNews;
     return `
     <div class="last-news">
         <img src=${newsImg}>
@@ -81,10 +87,11 @@ const isBtnInactive = (element) => {
 }
 
 const changeBtnState = (selectedCategory) => {
-    const categories = [... categoryList]
+    const categories = [...categoryList]
     categories.forEach((categoryBtn)=>{
         if(categoryBtn.dataset.category !== selectedCategory){
             categoryBtn.classList.remove("active");
+            buttonLoad.classList.add("hidden");
             return;
         }
         categoryBtn.classList.add("active");
@@ -101,15 +108,6 @@ const filterNews = () => {
         return news.category === appState.activeFilter;
     })
     renderNews(filteredNews);
-}
-
-const btnHidden = () => {
-    if(categoryList && categoryList.classList.contains("active")){
-        buttonLoad.classList.add("hidden");
-    }
-    else {
-        buttonLoad.classList.remove("hidden");
-    }
 }
 
 const applyFilter = ({target}) => {
@@ -137,7 +135,6 @@ const toggleSeeLater = () => {
     }
 }
 
-
 const toggleNav = () => {
         navBarList.classList.toggle("open-menu")
     if (seeLaterMenu.classList.contains("open-label")){
@@ -146,13 +143,36 @@ const toggleNav = () => {
     }
 }
 
+let actualIndex = newsDataVideo[0].videoId;
+
+const changeHero  = () => {
+    title.textContent = newsDataVideo[actualIndex].titleVideo
+    paragraph.textContent = newsDataVideo[actualIndex].footerVideo 
+    video.src = newsDataVideo[actualIndex].newsVideo
+    video.load();
+}
+
+const backElement = () => {
+    actualIndex = (actualIndex -1 + newsDataVideo.length) % newsDataVideo.length;
+    changeHero()
+}
+
+const nextElement = () => {
+    actualIndex = (actualIndex + 1) % newsDataVideo.length;
+    changeHero();
+}
+
+changeHero();
+
 const init = () => {
     renderNews(appState.news[appState.indexNews]);
     renderLastNews(newsData);
     buttonLoad.addEventListener("click", loadNews);
     categoriesContainer.addEventListener("click", applyFilter);
-    labelSeeLater.addEventListener("click", toggleSeeLater)
-    menuBtn.addEventListener("click", toggleNav)
+    labelSeeLater.addEventListener("click", toggleSeeLater);  
+    menuBtn.addEventListener("click", toggleNav);
+    nextBtn.addEventListener("click", nextElement);
+    backBtn.addEventListener("click", backElement);
 };
 
 init();

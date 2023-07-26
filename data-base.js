@@ -85,6 +85,27 @@ const newsData = [
     },
 ];
 
+const newsDataVideo = [
+    {
+        videoId: 0,
+        newsVideo: "./assets/body/ssd-samsung.mp4",
+        titleVideo: "Samsung alcanza los 13.000 MB/s con su nuevo SSD con PCIe 5.0: doblando en velocidad a los discos duros que se venden hoy en día",
+        footerVideo:"La tecnología PCIe 5.0 ofrece un ancho de banda de hasta 32 GT/s, el doble de PCIe 4.0. Adicionalmente, la eficiencia del nuevo SSD se ha mejorado hasta los 608 MB/s por vatio, lo que supone un 30% de mejoría respecto a los SSD actuales con PCIe 4.0.",
+    },
+    {
+        videoId: 1,
+        newsVideo: "./assets/body/apple-vision-pro.mp4",
+        titleVideo: "Apple Vision Pro: la nueva era de Apple arranca con unas bestiales gafas de realidad mixta.",
+        footerVideo: "Se acabaron los rumores. Apple ha presentado sus primeras gafas de realidad mixta, dispuesta a iniciar una nueva etapa en la compañía. Tras la apuesta de rivales como Meta con sus Quest Pro, con un ticket final de casi 2.000 euros en España, o rivales como OPPO pugnando por el desarrollo en realidad mixta, Apple inicia una nueva era en su gama de producto con las Apple Vision Pro.",
+    },
+    {
+        videoId: 2,
+        newsVideo: "./assets/body/s23-ultra.mp4",
+        titleVideo: "El Samsung Galaxy S23+ es uno de los mejores teléfonos del mercado y su versión de 512 GB está más barata que nunca en Mi Electro",
+        footerVideo: "Con un precio oficial en Mi Electro de 1.329 euros, este Galaxy S23+ cuenta ahora con un descuento de 230 euros que la deja en los actuales 1.099 euros con el envío totalmente gratuito.",
+    }
+];
+
 
 const dividerNews = (size) => {
 
@@ -105,4 +126,4 @@ const appState = {
     indexNews: 0,
     limitNews: dividerNews(4).length,
     activeFilter:null,
-}
+};

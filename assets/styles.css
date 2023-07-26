@@ -282,7 +282,7 @@ body {
     color: var(--a0);
 }
 
-.notice-box video {
+.videoChange {
     position: absolute;
     top: 0;
     left: 0;
@@ -291,6 +291,7 @@ body {
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
+    opacity: 0.7;
 }
 
 .nav-btn {
