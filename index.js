@@ -1,21 +1,28 @@
 const containerNews = document.querySelector(".news-p");
-const containerLastNews = document.querySelector(".last-news-box")
-const buttonLoad = document.querySelector(".btn-load") 
-const categoriesContainer =  document.querySelector(".categories")
-const categoryList = document.querySelectorAll(".category")
-const labelSeeLater = document.querySelector(".see-later-label")
-const seeLaterMenu = document.querySelector(".fav-news-container")
-const menuBtn = document.querySelector(".toggle-menu")
-const navBarList = document.querySelector(".nav-list")
-const heroNewsVideo = document.querySelector(".news-info-box")
-const title = document.querySelector(".hero-title") 
-const paragraph = document.querySelector(".hero-paragraph")
-const video = document.querySelector(".videoChange")
-const nextBtn = document.querySelector(".next")
-const backBtn = document.querySelector(".back")
+const containerLastNews = document.querySelector(".last-news-box");
+const buttonLoad = document.querySelector(".btn-load") ;
+const categoriesContainer =  document.querySelector(".categories");
+const categoryList = document.querySelectorAll(".category");
+const labelSeeLater = document.querySelector(".see-later-label");
+const seeLaterMenu = document.querySelector(".fav-news-container");
+const menuBtn = document.querySelector(".toggle-menu");
+const navBarList = document.querySelector(".nav-list");
+const heroNewsVideo = document.querySelector(".news-info-box");
+const title = document.querySelector(".hero-title") ;
+const paragraph = document.querySelector(".hero-paragraph");
+const video = document.querySelector(".videoChange");
+const nextBtn = document.querySelector(".next");
+const backBtn = document.querySelector(".back");
+const newsFavContainer = document.querySelector(".fav-news-container");
+
+
+const newsFav = localStorage.getItem("newsFav") || [];
+
+const dataNewsToLocalStorage = localStorage.setItem("newsFav", JSON.stringify(newsFav));
+
 
 const createNewsTemplate = (news) => {
-    let {id, newsImg, title, footer, category} = news;
+    let {id, newsImg, identifier, footer, category} = news;
 
     return `
     <div class="news-box">
@@ -28,10 +35,10 @@ const createNewsTemplate = (news) => {
                 <button 
                     class="btn btn-add-notice btn-news"
                     data-id="${id}" 
-                    data-title=${title} 
+                    data-identifier=${identifier} 
                     data-newsImg=${newsImg} 
                     data-footer=${category}>
-                        +
+                    <i class="fa-regular fa-heart"></i>
                     </button>    
             </div>
     </div>
@@ -40,7 +47,7 @@ const createNewsTemplate = (news) => {
 };
 
 const templateLastNews = (lastNews) => {
-    let {id, newsImg, title, category} = lastNews;
+    let {id, newsImg, identifier, category} = lastNews;
     return `
     <div class="last-news">
         <img src=${newsImg}>
@@ -48,10 +55,10 @@ const templateLastNews = (lastNews) => {
                 <button 
                     class="btn btn-add-notice"
                     data-id="${id}" 
-                    data-title=${title} 
+                    data-identifier=${identifier} 
                     data-newsImg=${newsImg} 
                     data-footer=${category}>
-                        +
+                        <i class="fa-regular fa-heart"></i>
                     </button>
                 <h4>${title}</h4>
             </div>
@@ -153,7 +160,7 @@ const changeHero  = () => {
 }
 
 const backElement = () => {
-    actualIndex = (actualIndex -1 + newsDataVideo.length) % newsDataVideo.length;
+    actualIndex = (actualIndex - 1 + newsDataVideo.length) % newsDataVideo.length;
     changeHero()
 }
 
@@ -162,7 +169,14 @@ const nextElement = () => {
     changeHero();
 }
 
-changeHero();
+
+const renderNewsFav = () => {
+    if (!newsFav) {
+        newsFavContainer.innerHTML = `<p class="pFavElement">No has agregado nada aún</p>`
+    }
+}
+
+changeHero()
 
 const init = () => {
     renderNews(appState.news[appState.indexNews]);
@@ -173,6 +187,7 @@ const init = () => {
     menuBtn.addEventListener("click", toggleNav);
     nextBtn.addEventListener("click", nextElement);
     backBtn.addEventListener("click", backElement);
+    document.addEventListener("DOMContentLoaded", renderNewsFav);
 };
 
 init();
