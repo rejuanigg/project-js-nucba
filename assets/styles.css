@@ -28,6 +28,7 @@ font-family: 'Oswald', sans-serif; */
     --b2: #125f7e;
     --b3: #1d9bc5;
     --b3: #20d9d8;
+    --c0: #931323;
 }
 
 html{
@@ -52,6 +53,9 @@ body {
     font-weight: 800;
 }
 
+.skyblue {
+    color: var(--b3);
+}
 
 .link-logo {
     text-decoration: none;
@@ -126,7 +130,8 @@ body {
 }
 
 
-.fav-news-container {
+
+.fav-news-section {
     background-color: var(--a0);
     position: absolute;
     margin-top: 80px;
@@ -136,7 +141,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-height: 55vh;
+    min-height: 45vh;
+    max-height: 70vh;
     gap: 30px;
     display: none;
     border-bottom-left-radius: 8px;
@@ -146,6 +152,10 @@ body {
     padding: 40px;
     overflow: scroll;
     overflow-x: hidden;
+}
+
+.open-menu {
+    display: flex;
 }
 
 .fav-news-box {
@@ -176,7 +186,7 @@ body {
     margin-top: 20px;
 }
 
-.fav-news-container h2 {
+.fav-news-section h2 {
     color: var(--b1);
     margin-top: 20px;
 }
@@ -190,14 +200,32 @@ body {
     border: 2px solid var(--b1);
 }
 
+.checkNews {
+    width: 300px;
+    height: 30px;
+    color: var(--b3);
+    font-weight: 600;
+    border-radius: 8px;
+    background-color: var(--b1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.disabled {
+    color: var(--a1);
+    border: 2px solid var(--b1);
+    border-radius: 8px;
+    background-color: transparent;
+    cursor: not-allowed;
+}
+
 .open-label {
     transform: translate(0%);
     transition: all 0.5s ease-in;
 }
 
-.open-menu {
-    display: flex;
-}
 
 .toggle-menu {
     display: none;
@@ -207,9 +235,6 @@ body {
     color: var(--b3);
     font-size: 20px;
 }
-
-
-
 
 /* MAIN */
 
@@ -635,4 +660,29 @@ body {
 .pFavElement {
     font-family: 'Montserrat', sans-serif;
     color: var(--b2);
+}
+
+.modal {
+    width: 30%;
+    height: 40px;
+    background-color: var(--a4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    border: 2px solid var(--b3);
+    position: fixed;
+    z-index: 3;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    bottom: 0;
+    transition: all 0.5s ease-out;
+    transform: translateY(200%);
+}
+
+.active-modal {
+    transform: translateY(0);
+    transition: all 0.5 ease-in;
 }

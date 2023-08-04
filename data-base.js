@@ -13,7 +13,7 @@ const newsData = [
         identifier: "EuropaPolitics",
         title:"Europa se prepara para protegerse de China: su plan pasa por elaborar su Estrategia de Seguridad Económica",
         footer:"EEUU no es el único país que mira hacia China con recelo. Europa en conjunto está haciendo lo mismo.",
-        category:"politics",
+        category:"politics"
     },
     {
         id:3,
