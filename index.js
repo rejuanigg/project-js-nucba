@@ -13,19 +13,16 @@ const paragraph = document.querySelector(".hero-paragraph");
 const video = document.querySelector(".videoChange");
 const nextBtn = document.querySelector(".next");
 const backBtn = document.querySelector(".back");
-const newsFavContainer = document.querySelector(".fav-news-container");
-const showModal = document.querySelector(".modal")
-const checkNews = document.querySelector(".checkNews")
-const newsCounter = document.querySelector(".see-later-counter")
+const favContainer = document.querySelector(".fav-news-container")
+const modal = document.querySelector(".modal");
+const checkNew = document.querySelector(".checkNews");
+const numberFavNews = document.querySelector(".see-later-counter");
 
-//ERROR 
+let favNews = JSON.parse(localStorage.getItem("favNews")) || [];
 
-let newsFav = JSON.parse(localStorage.getItem("newsFav")) || [];
-
-const dataNewsToLocalStorage = () => {
-    localStorage.setItem("newsFav", JSON.stringify(newsFav));
+const saveNews = () => {
+    localStorage.setItem("favNews", JSON.stringify(favNews))
 }
-
 
 const createNewsTemplate = (news) => {
     let {id, newsImg, identifier, footer, category, title} = news;
@@ -180,35 +177,37 @@ changeHero()
 
 // NEWS FAV
 
-const renderNewsFav = () => {
-    if (!newsFav.length) {
-        newsFavContainer.innerHTML = `<p class="pFavElement">No has agregado nada aún</p>`
-        return;
+const templateFavNews = (favoriteNew) => {
+    const {id, title, newsImg, category} = favoriteNew
+    let categoryText = '';
+
+    switch(category) {
+        case 'new-products':
+            categoryText = 'Nuevos Productos ✨'
+        break;
+        case 'politics':
+            categoryText = 'Políticas 🤳'
+        break;
+        case 'esports':
+            categoryText = 'Esports 🕹️'
+        break;
+        default:
+        categoryText = category;
     }
-    newsFavContainer.innerHTML = newsFav.map(templateFavNews).join("")
-}
 
-const createNewsData = (news) => {
-    const {id, newsImg, identifier, category, title} = news;
-    return {id, newsImg, identifier, category, title};
-} 
-
-const templateFavNews = (createNewsData) => {
-    const {id, newsImg, identifier, category, title} = createNewsData;
     return `
     <div class="fav-news-box">
-            <img src=${newsImg}>
+            <img src="${newsImg}">
         <div class="fav-news-box-info">
             <h4>${title}</h4>
+            <p>De: ${categoryText}</p>
                 <div class="fav-news-options">
                     <button class="btn btn-see-more btn-news">Ver más</button>
                     <button 
-                    class="btn nav-btn 
-                            btn-remove 
-                            data-id=${id} 
-                            data-identifier=${identifier}
-                            data-category=${category} ">
-                            <i class="fa-solid fa-check"></i>
+                        class="btn nav-btn 
+                                btn-remove 
+                                data-id="${id}"">
+                                <i class="fa-solid fa-check"></i>
                     </button>    
                 </div>
         </div>
@@ -216,65 +215,79 @@ const templateFavNews = (createNewsData) => {
     `
 }
 
-const existingNewFav = (newsId) => {
-    return newsFav.find((item) => {
-        return item.id === newsId
+const renderFavNews = () => {
+    if(!favNews.length){
+        favContainer.innerHTML = `<p class="pFavElement">No has agregado nada aún</p>`
+        return;
+    }
+    favContainer.innerHTML = favNews.map(templateFavNews).join("");
+}
+
+const createFavNewsData = (favoriteNew) => {
+    const{id, title, newsImg, category, identifier} = favoriteNew
+    return {id, title, newsImg, category, identifier}
+}
+
+const isExistingFavNew = (favoriteNewId) => {
+    return favNews.some((item) => {
+        return item.id === favoriteNewId
     })
 }
 
-const showSuccesModal = (msg) => {
-    showModal.classList.add("active-modal");
-    showModal.textContent =msg;
+const showModalMessage = (msg) => {
+    modal.classList.add("active-modal")
+    modal.textContent = msg
     setTimeout(() => {
-        showModal.classList.remove("active-modal")
+        modal.classList.remove("active-modal")
     }, 1500)
 }
 
-const renderNewsFavCounter = () => {
-    newsCounter.textContent= newsFav.reduce((acc, val) => {
+const createFavNews = (favoriteNew) => {
+    favNews = [
+        ...favNews,
+        {
+            ...favoriteNew,
+            quantity: 1,
+        }
+    ]
+}
+
+updateNewFavState = () => {
+    saveNews();
+    renderFavNews();
+    disableBtn(checkNew);
+    renderNumberFavNews();
+}
+
+const disableBtn = (btn) => {
+    if (!favNews.length) {
+        btn.classList.add("disabled")
+    } else { 
+        btn.classList.remove("disabled")
+    }
+}
+
+const renderNumberFavNews = () => {
+    numberFavNews.textContent = favNews.reduce((acc, val) => {
         return acc + val.quantity
     }, 0)
 }
 
-const createFavNews = (news) => {
-    newsFav =[
-        ...newsFav,
-        {
-            ...news,
-            quantity: 1
-        },
-    ];
-};
-
-const disableBtn = (btn) => {
-      if (!newsFav.length){
-        btn.classList.add("disabled")
-      } else {
-        btn.classList.remove("disabled")
-      }
-}
-
- const updateFavNews = () => {
-    dataNewsToLocalStorage();
-    templateFavNews();
-    disableBtn(checkNews);
-    renderNewsFavCounter();
- }
-
 const addNew = (e) => {
-     if(!e.target.classList.contains("btn-news")) {
-        return
+     if(!e.target.classList.contains("btn-add-notice")) {
+        return;
      }
-     const news = createNewsData(e.target.dataset);
-     if (existingNewFav(news.id)) {
-        showSuccesModal("Esta noticia ya esta en tu lista. 🚀")
-     } else {
-        createFavNews (news)
-        showSuccesModal("Se ha agregado la noticia correctamente. ✅")
-     } 
+     const newsId = parseInt(e.target.dataset.id);
+     const favoriteNew = newsData.find(news => news.id === newsId);
 
-     updateFavNews()
-}
+     if(isExistingFavNew(favoriteNew.id)) {
+        showModalMessage("Se ha agregado la noticia.")
+     }else {
+        createFavNews(favoriteNew)
+        showModalMessage("Esta noticia ya ha sido agregada")
+    }
+    updateNewFavState();
+} 
 
 
 const init = () => {
@@ -286,10 +299,10 @@ const init = () => {
     menuBtn.addEventListener("click", toggleNav);
     nextBtn.addEventListener("click", nextElement);
     backBtn.addEventListener("click", backElement);
-    document.addEventListener("DOMContentLoaded", renderNewsFav);
-    containerNews.addEventListener("click", addNew);
-    disableBtn(checkNews);
-    renderNewsFavCounter()
+    document.addEventListener("DOMContenLoaded", renderFavNews())
+    containerNews.addEventListener("click", addNew)
+    disableBtn(checkNew)
+    renderNumberFavNews()
 };
 
 init();

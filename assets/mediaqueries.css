@@ -260,4 +260,29 @@
     .red-social-list {
         gap: 10px;
     }
+
+    .fav-news-box {
+        width: 300px;
+    }
+}
+
+@media (max-width: 380px){
+
+    .fav-news-box img {
+        max-width: 99%;
+        min-height: 90px;
+    }
+
+    .fav-news-box {
+        width: 250px;
+    }
+
+    .fav-news-section {
+        padding: 10px;
+    }
+
+    .fav-news-section h2{
+        width: 99%;
+        text-align: center;
+    }
 }

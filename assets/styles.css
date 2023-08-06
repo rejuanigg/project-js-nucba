@@ -162,7 +162,7 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 5px;
     align-items: center;
     justify-content: center;
     height: 300px;
@@ -175,12 +175,27 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    width: 80%;
+    width: 99%;
     padding: 20px;
 }
 
+.fav-news-box-info h4{
+    font-size: 12px;
+}
+
+.fav-news-box-info p {
+    font-size: 10px;
+}
+
+.fav-news-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
 .fav-news-box img {
-    width: auto;
+    max-width: 200px;
     height: 160px;
     border-radius: 8px;
     margin-top: 20px;
@@ -211,6 +226,7 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    padding: 20px;
 }
 
 .disabled {

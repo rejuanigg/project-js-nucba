@@ -94,7 +94,7 @@ const newsData = [
         title:"Xbox Series S catapulta su disco interno con un nuevo modelo: color negro y el doble de espacio de almacenaje",
         footer:"Xbox Series S catapulta su disco interno con un nuevo modelo: color negro y el doble de espacio de almacenaje.",
         category:"new-products",
-    },
+    }
 ];
 
 const newsDataVideo = [
